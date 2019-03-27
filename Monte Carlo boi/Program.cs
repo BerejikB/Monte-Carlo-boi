@@ -23,14 +23,36 @@ namespace Monte_Carlo_boi
         Random Rando = new Random();
         public int counter;
         public int arraySize;
+        
         static void Main(string[] args)
         {
-            Program DoItNow = new Program();
-            DoItNow.Execute();
+           // Program DoItNow = new Program();
+            bool running = true;
+            while (running)
+            {
 
+                Program DoItNow = new Program();
+                ConsoleKeyInfo userinputboi;
+            userinputboi = Console.ReadKey(true);
 
-        }
+          
+                switch (userinputboi.Key)
+                {
+                    case ConsoleKey.Escape:
+                        {
+                        running = false;
+                        }
+                        break;
 
+                default:
+                    DoItNow.Execute();
+                    
+                break;
+
+                }
+             }
+           }
+        
         public void MakePair()
         {
             //XYpair coords = new XYpair();
@@ -59,17 +81,21 @@ namespace Monte_Carlo_boi
 
            
             }
-
-            double dividoboi =  arraySize /= counter;
+            double dividoboi =    arraySize /=   counter;
+            //double dividoboi1 =   counter /= arraySize;
             dividoboi *= 4;
 
 
             Console.WriteLine($"Total number of hypotenuseseseseses greater than 1: {counter}");
                      
-            Console.WriteLine($" The 'Value from step 5' {dividoboi}");
+            Console.WriteLine($" Estimation of pi {dividoboi}");
+            //Console.WriteLine($" Estimation of pi {dividoboi1}");
+
             Console.WriteLine($"Math.Pi's value: {System.Math.PI}");
-            Console.WriteLine($"Estimation of pi {3.14}");
+            
             Console.ReadKey();
+           
+
 
         }
 
