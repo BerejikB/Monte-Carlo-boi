@@ -19,40 +19,52 @@ namespace Monte_Carlo_boi
     class Program
     {
         XYpair coords = new XYpair();
-       
+        public double dividoboi;
         Random Rando = new Random();
-        public int counter;
-        public int arraySize;
+        public double counter;
+        public double arraySize;
         
         static void Main(string[] args)
         {
            // Program DoItNow = new Program();
+                Program DoItNow = new Program();
+                DoItNow.Run();
+            
+           }
+
+        public void Run()
+        {
             bool running = true;
             while (running)
             {
 
-                Program DoItNow = new Program();
                 ConsoleKeyInfo userinputboi;
-            userinputboi = Console.ReadKey(true);
+                userinputboi = Console.ReadKey(true);
 
-          
+
                 switch (userinputboi.Key)
                 {
                     case ConsoleKey.Escape:
                         {
-                        running = false;
+                            running = false;
                         }
                         break;
 
-                default:
-                    DoItNow.Execute();
-                    
-                break;
+                    default:
+                        counter = 0;
+                        arraySize = 0;
+                        Execute();
+
+                        break;
+
+
+
+
 
                 }
-             }
-           }
-        
+            }
+        }
+
         public void MakePair()
         {
             //XYpair coords = new XYpair();
@@ -65,48 +77,39 @@ namespace Monte_Carlo_boi
         {
             Console.WriteLine("How many times do you wish to execute this?");
             double input = double.Parse(Console.ReadLine());
-            arraySize = (int)input;
+            
             return input;
         }
 
         public void Execute()
         {
 
-            InputBoi();
-            double[] array = new double[arraySize];
-
+          
+            double[] array = new double[(int)InputBoi()];
+            arraySize = array.Length;
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] =  HypotenuseBoi(RandoMaker(), RandoMaker());
 
-           
             }
-            double dividoboi =    arraySize /=   counter;
-            //double dividoboi1 =   counter /= arraySize;
+
+            //dividoboi=(  arraySize/counter) ;
+            dividoboi = ( counter/arraySize );
             dividoboi *= 4;
 
-
-            Console.WriteLine($"Total number of hypotenuseseseseses greater than 1: {counter}");
-                     
-            Console.WriteLine($" Estimation of pi {dividoboi}");
-            //Console.WriteLine($" Estimation of pi {dividoboi1}");
-
-            Console.WriteLine($"Math.Pi's value: {System.Math.PI}");
-            
+            output();
             Console.ReadKey();
-           
-
 
         }
 
         public double HypotenuseBoi(double X, double Y)
         {
-                      
+                  
             double side1 = (X * X);
             double side2 = (Y * Y);
             double Hypotenuse = Math.Sqrt(side1 + side2 );
 
-            if (Hypotenuse > 1)
+            if (Hypotenuse <= 1)
             { counter++; }
 
             return Hypotenuse;
@@ -122,7 +125,24 @@ namespace Monte_Carlo_boi
 
         }
 
-       
+        public void output()
+        {
+            
+            Console.WriteLine($"Total number of hypotenuseseseseses greater than 1: {counter}");
+
+            Console.WriteLine($" Estimation of pi {dividoboi}");
+            //Console.WriteLine($" Estimation of pi {dividoboi1}");
+
+            Console.WriteLine($"Math.Pi's value: {System.Math.PI}");
+           
+
+            
+
+
+
+
+
+        }
 
     }
 }
